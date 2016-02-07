@@ -150,6 +150,9 @@ uint16_t tick[2];
 uint8_t cidx[2];
 int16_t cntr[2];
 
+int16_t counter = 0;
+int16_t counter_max = 3000;
+
 typedef struct Mode {
   uint8_t accel_mode, accel_sens;   // 2B
   uint8_t pattern[2];               // 2B
@@ -297,6 +300,7 @@ void setup() {
 void loop() {
   handlePress(digitalRead(PIN_BUTTON) == LOW);
   handleSerial();
+  if (counter < counter_max) counter++;
 
   if (button_state == S_PLAY_OFF || button_state == S_BUNDLE_OFF || button_state >= 210) {
     handleAccel();
@@ -421,6 +425,16 @@ void handlePress(bool pressed) {
         if (since_trans == VERY_LONG_HOLD) flash(0, 0, 128, 5);
         if (!pressed) {
           conjure_toggle = !conjure_toggle;
+          if (conjure_toggle == false) {
+            if (counter == counter_max) {
+              changeMode(0);
+            } else if (counter > 1500) {
+              changeMode(1); 
+            }
+          }
+          else {
+            counter = 0;
+          }
           new_state = S_PLAY_OFF;
         } else if (since_trans >= VERY_LONG_HOLD) {
           conjure = conjure_toggle = false;
