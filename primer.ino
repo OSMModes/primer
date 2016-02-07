@@ -151,7 +151,8 @@ uint8_t cidx[2];
 int16_t cntr[2];
 
 int16_t counter = 0;
-int16_t counter_max = 3000;
+int16_t counter_mid = 2000;
+int16_t counter_max = 5000;
 
 typedef struct Mode {
   uint8_t accel_mode, accel_sens;   // 2B
@@ -428,7 +429,7 @@ void handlePress(bool pressed) {
           if (conjure_toggle == false) {
             if (counter == counter_max) {
               changeMode(0);
-            } else if (counter > 1500) {
+            } else if (counter > counter_mid) {
               changeMode(1); 
             }
           }
