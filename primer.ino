@@ -113,7 +113,7 @@
 
 elapsedMicros limiter = 0;
 uint8_t led_r, led_g, led_b;
-bool conjure = false;
+bool conjure = true;
 bool conjure_toggle = false;
 
 uint8_t gui_color, gui_shade, edit_color;
