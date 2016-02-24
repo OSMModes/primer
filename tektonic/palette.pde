@@ -1,5 +1,6 @@
 int NUM_COLORS = 48;
 
+
 class PalettePanel {
   Group grp, grpEdit;
   Textlabel tlTitle;
@@ -7,7 +8,9 @@ class PalettePanel {
   Button[][] btnPalette = new Button[48][4];
   Button btnSelected;
   Button btnReload, btnWrite, btnSave, btnLoad;
+  HSLColorSelection hslSelectionView;
   Slider sldRed, sldGreen, sldBlue;
+  boolean hslEnabled = true;
   int selected = 0;
   int selected_shade = 0;
 
@@ -120,6 +123,18 @@ class PalettePanel {
        .setColorActive(color(0, 0, 255))
        .setCaptionLabel("")
        .setGroup(grpEdit);
+    
+    if (hslEnabled) {
+      sldRed.hide();
+      sldGreen.hide();
+      sldBlue.hide();
+      Point hslSelectionPos = new Point(100, 70);
+      Size hslSelectionSize = new Size(720, 100);
+      hslSelectionView = new HSLColorSelection(hslSelectionPos, hslSelectionSize);
+    } else {
+      
+    }
+  
   }
 
   void update(int addr, int val) {
@@ -181,6 +196,7 @@ class PalettePanel {
 
   void show() {
     if (gui_state == 1) {
+      hslSelectionView.draw();
       grpEdit.show();
     } else {
       grpEdit.hide();

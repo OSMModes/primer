@@ -43,6 +43,7 @@ int cur_preset_idx = 0;
 int dump_mode;
 
 
+
 Textlabel tlLoading;
 GuiUI guiui;
 PresetEditor preset_editor;
@@ -78,6 +79,16 @@ void connectLight() {
       port = new Serial(this, p, 57600);
     } catch (Exception e) {
     }
+  }
+}
+
+void mouseDragged() {
+  if (mouseX > palette_panel.hslSelectionView.position.x && mouseX < palette_panel.hslSelectionView.position.x+palette_panel.hslSelectionView.size.width &&
+      mouseY > palette_panel.hslSelectionView.position.y && mouseY < palette_panel.hslSelectionView.position.y+palette_panel.hslSelectionView.size.height) {
+    palette_panel.hslSelectionView.setSelection(mouseX, mouseY);
+    palette_panel.sldRed.setValue(palette_panel.hslSelectionView.rgb.rgb[0]);
+    palette_panel.sldGreen.setValue(palette_panel.hslSelectionView.rgb.rgb[1]);
+    palette_panel.sldBlue.setValue(palette_panel.hslSelectionView.rgb.rgb[2]);
   }
 }
 
