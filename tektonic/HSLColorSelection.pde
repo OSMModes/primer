@@ -30,7 +30,7 @@ public class HSLColorSelection {
   {
     if (drawn ==0) {
       background(0);
-      for (int i = 0; i <= hSteps(); i++)
+      for (int i = 0; i < hSteps(); i++)
       {
         noStroke();
         Color tmpColor = HSL2RGB(map(i * barWidth(), 0.0, drawWidth, 0.0, 360.0), saturation, .5);
