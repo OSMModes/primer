@@ -54,7 +54,7 @@ Boolean shifted = false;
 
 
 void setup() {
-  surface.setTitle("Tekton for Primer 0.91");
+  surface.setTitle("Tektonic for Primer 0.91");
   size(1000, 800);
   cp5 = new ControlP5(this);
 
